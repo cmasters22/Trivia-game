@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trivia Game</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="row">
+  <div class= "col-md-12">
+	 <div class="background">
+	   <div class="row">
+		    <h1 id="title"> The Office: Trivia Game </h1>
+	   </div>
+	   <div class="row">
+			<div class="row" id="mainBox">
+			  <div class="trivBox">
+				<div class="row" id="questBox"> 
+				  <div> <span id="startTitle"></span></div>
+				  <div><span id="question"></span> </div>
+				  <div> <span id="display"></span></div>
+				</div>
+			<div class="row" id="ansBox">
+			
+				<form action="" class="Answers">
+				<input type="radio" name="choices" value="0"> <span id="option1" class="ansStyle"></span> <br>
+				<input type="radio" name="choices" value="1"> <span id="option2" class="ansStyle"></span> <br>
+				<input type="radio" name="choices" value="2"> <span id="option3" class="ansStyle"></span> <br>
+				<input type="radio" name="choices" value="3"> <span id="option4" class="ansStyle"></span></form>
+
+			 	<button type="button" class="btn" id="startbtn">Start</button>
+			 	<br><br>  <div id="time"> Time remaining: </div> <span id="timer"></span>
+			</div>
+			  </div>
+		    </div>
+	   </div>
+	  </div>
+   </div>
+   <div class="row" id="footer"> 
+		   <p class="copyright"> Copyright &copy; 2017 Cumorah Masters </p>
+		</div>
+   </div>
+		
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+
+//$(document).ready(function(){
+
+		$("#startTitle").text( "Click Start to Begin!");
+		$("#submitbtn").hide();
+		$("#display").show();
+		$("input").hide();
+		$("#time").hide();
+		
+
+		var counter =0;
+		var clockRunning = 0;
+		var stopwatch = 15;
+		var t;
+		function timeKeeper(){
+
+			if(!clockRunning) {
+				clockRunning=1;
+				count();
+				
+			}
+		}
+			function count(){
+				--stopwatch;
+				$("#timer").text(stopwatch + " seconds");
+				t = setTimeout(function(){ count() }, 1000);
+				if (stopwatch == 0){
+					console.log("DISPLAY!");
+					radioValue = -1;
+					IsitRight(radioValue);
+				} 
+			}
+
+		var ix = 0;
+		var ij=0;
+
+			var q1 = {
+			  question: "Question 1: What is Dwight's middle initial?", 
+			  answers: [
+		   				    {
+		   					choice: "J", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "M", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "K", 
+		   					answ: "right",
+		   			 		},		
+		   			 		{
+		   					choice: "L", 
+		   					answ: "right",
+		   			 		},	
+	   					]
+			  }
+
+			var q2 = {
+	   		question: "Question 2: In season 4, Michael hits who with his car?", 
+	   		answers: [
+		   					{
+		   					choice: "Meredith", 
+		   					answ: "right",
+		   			 		},
+		   			 		{
+		   					choice: "Angela", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Toby", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Jan", 
+		   					answ: "wrong",
+		   			 		},		
+	   					]	
+	   				}
+	   		var q3 = {
+	   			question: "Question 3: Who decides to set up a practice fire alarm?", 
+	   			answers: [
+			   				{
+		   					choice: "Andy", 
+		   					answ: "wrong",
+		   			 	    },
+	   			 		    {
+		   					choice: "Dwight", 
+		   					answ: "right",
+	   			 		    },
+	   			 	        {
+	   						choice: "Ryan", 
+	   						answ: "wrong",
+		   			 	    },
+		   			 	    {
+	   						choice: "Andy", 
+	   						answ: "wrong",
+		   			 	    },
+
+		   					]	
+	   				}
+
+	   		var q4 = {
+	   			question: "Question 4: Michael Scott has said all of the following phrases, except for: ",
+	   			answers: [
+		   					{
+		   					   choice: "Thats what she said", 
+		   					   answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "I declare bankruptcy!", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "I wish there was a way to know you were in the good old days before you've actually left them.", 
+		   					answ: "right",
+		   			 		},		
+		   			 		{
+	   						choice: "Barack is president! You are black Stanley", 
+	   						answ: "wrong",
+		   			 	    },					
+	   					]	
+	   				}
+	   			var q5 = {
+	   				question: "Question 5: What is the name of Jim and Pam's first born?",
+	   				answers: [
+		   					{
+		   					   choice: "Cleo", 
+		   					   answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Cecilia", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Cindy", 
+		   					answ: "wrong",
+		   			 		},		
+		   			 		{
+	   						choice: "CeCe", 
+	   						answ: "right",
+		   			 	    },					
+	   					]	
+	   				}
+	   				var q6 = {
+	   			question: "Question 6: In the office olympics, what does Pam name snowshoe racing with boxes of paper?",
+	   			answers: [
+		   					{
+		   					   choice: "Flonkerton", 
+		   					   answ: "right",
+		   			 		},
+		   			 		{
+		   					choice: "Office ice skating", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Pegerhosen", 
+		   					answ: "wrong",
+		   			 		},	
+		   			 		{
+	   						choice: "Paper skate", 
+	   						answ: "wrong",
+		   			 	    },						
+	   					]	
+	   				}
+	   				var q7 = {
+	   			question: "Question 7: At the end of the office garage sale what item does Dwight end up?",
+	   			answers: [
+		   					{
+		   					   choice: "A vintage record player", 
+		   					   answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Magic Beans", 
+		   					answ: "right",
+		   			 		},
+		   			 		{
+		   					choice: "A candle with his face engraved on it.", 
+		   					answ: "wrong",
+		   			 		},		
+		   			 		{
+	   						choice: "An old photo album of Daryl's family", 
+	   						answ: "wrong",
+		   			 	    },					
+	   					]	
+	   				}
+	   				var q8 = {
+	   			question: "Question 8: In that same episode what special event occurs?",
+	   			answers: [
+		   					{
+		   					   choice: "Andy announces he got a promotion", 
+		   					   answ: "wrong",
+		   			 		},	
+		   			 		{
+		   					choice: "Pam and Jim announce they're expecting", 
+		   					answ: "wrong",
+		   			 		},
+		   			 		{
+		   					choice: "Creed announces his retirement", 
+		   					answ: "wrong",
+		   			 		},	
+		   			 		{
+		   					   choice: "Michael proposes to Holly", 
+		   					   answ: "right",
+		   			 		},						
+	   					]	
+	   				}
+	   
+      	var quest = [ q1, q2, q3, q4, q5, q6, q7, q8];
+
+       	function nextSlide() {
+	   		
+	   		$("#display").empty();
+	   		$("#question").show();
+			$(".Answers").show();
+			$("#time").show();
+			$("#timer").show();
+			stopwatch =15;
+   		
+	   		$("#question").text(quest[ij].question);
+	    	$("#option1").text(quest[ij].answers[0].choice);
+	    	$("#option2").text(quest[ij].answers[1].choice);
+	    	$("#option3").text(quest[ij].answers[2].choice);
+	    	$("#option4").text(quest[ij].answers[3].choice);
+	    	
+	 		ij++;
+}
+
+		function wrong(){
+			console.log("really");
+
+			$("#time").hide();
+			$("#timer").hide();
+			$("#question").empty();
+			$(".Answers").hide();
+			$("#display").show();
+			$("#display").text("Incorrect!");
+
+		} 
+		function right(){
+
+			$("#time").hide();
+			$("#timer").hide();
+			$("#question").hide();
+			$(".Answers").hide();
+			$("#display").show();
+			$("#display").text("Correct!");
+		}
+
+	$("#startbtn").on("click", function(){
+		
+		$("#timer").text("00:00");
+		timeKeeper();
+		$("#time").show();
+		$("#startTitle").hide();
+		$("#startbtn").hide();
+		$("input").show();
+    	nextSlide();
+
+    });
+
+    function endScore(){
+    	$("#display").show();
+    	$("#display").css("margin-top","30px");
+    	$("#display").css("font-size","20px");
+    	$("#display").html("<p> Your score: " + counter + "/10 </p>");
+    }
+
+    function Results(counter){
+		$("#startTitle").append("Score");
+		$("#question").empty();
+		$(".Answers").hide();
+		endScore();  		
+	}
+	
+	function IsitRight(radioValue, counter){
+	    
+    		//console.log(quest[ij].answers[radioValue].answ);
+    	
+    	if (quest[ij].answers[radioValue].answ[0] == "right"){
+    		counter++;
+    		right();
+    	}
+    	else {
+    		wrong();
+    		if (quest[ij].length ===8){
+			Results();
+			}
+    	}
+
+    		
+	}
+	
+	$(".Answers").on("click", function(){
+   
+  	var radioValue = $("input[name='choices']:checked").val();
+
+   	IsitRight(radioValue, counter);
+   	setTimeout(nextSlide, 2500); 
+
+});
+//});
+
+
+    
+</script>
+</body>
+</html>
